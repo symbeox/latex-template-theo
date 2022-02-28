@@ -1,0 +1,132 @@
+%% Dokumentenklasse (Koma Script) -----------------------------------------
+\documentclass[
+   draft,     % Entwurfsstadium
+	% final am Ende einfügen, damit todonotes verschwinden
+   %final,      % fertiges Dokument
+%%%% --- Schriftgröße ---
+   11pt,
+   %smallheadings,		% kleine Überschriften
+   %normalheadings,		% normale Überschriften
+   %bigheadings,			% große Überschriften
+%%%% --- Sprache ---
+   ngerman,           % wird an andere Pakete weitergereicht
+%%%% === Seitengröße ===
+   % letterpaper,
+   % legalpaper,
+   % executivepaper,
+   a4paper,
+   % a5paper,
+   % landscap,
+%%%% === Optionen für den Satzspiegel ===
+   %DIVcalc,         % automatische Berechnung einer guten Zeilenlaenge
+   1.1headlines,     % Zeilenanzahl der Kopfzeilen
+   %headinclude,     % Kopf einbeziehen
+   %headexclude,      % Kopf nicht einbeziehen
+   %footinclude,     % Fuss einbeziehen
+   %footexclude,      % Fuss nicht einbeziehen
+   %mpinclude,       % Margin einbeziehen
+   %mpexclude,        % Margin nicht einbeziehen
+   pagesize,         % Schreibt die Papiergroesse in die Datei.
+                     % Wichtig fuer Konvertierungen
+%%%% === Layout ===
+   oneside,         % einseitiges Layout
+   %twoside,          % Seitenraender für zweiseitiges Layout
+   %onecolumn,        % Einspaltig
+   %twocolumn,       % Zweispaltig
+   %openany,         % Kapitel beginnen auf jeder Seite
+   %openright,        % Kapitel beginnen immer auf der rechten Seite
+                     % (macht nur bei 'twoside' Sinn)
+   %cleardoubleplain,    % leere, linke Seite mit Seitenstil 'plain'
+   %cleardoubleempty,    % leere, linke Seite mit Seitenstil 'empty'
+   titlepage,        % Titel als einzelne Seite ('titlepage' Umgebung)
+   %notitlepage,     % Titel in Seite integriert
+%%%% --- Absatzeinzug ---
+   %                 % Absatzabstand: Einzeilig,
+   %parskip,         % Freiraum in letzter Zeile: 1em
+   %parskip*,        % Freiraum in letzter Zeile: Viertel einer Zeile
+   %parskip+,        % Freiraum in letzter Zeile: Drittel einer Zeile
+   %parskip-,        % Freiraum in letzter Zeile: keine Vorkehrungen
+   %                 % Absatzabstand: Halbzeilig
+   %halfparskip,     % Freiraum in letzter Zeile: 1em
+   %halfparskip*,    % Freiraum in letzter Zeile: Viertel einer Zeile
+   %halfparskip+,    % Freiraum in letzter Zeile: Drittel einer Zeile
+   %halfparskip,     % Freiraum in letzter Zeile: keine Vorkehrungen
+   %                 % Absatzabstand: keiner
+   %parindent,        % Eingerückt (Standard)
+%%%% --- Kolumnentitel ---
+   headsepline,      % Linie unter Kolumnentitel
+   %headnosepline,   % keine Linie unter Kolumnentitel
+   %footsepline,     % Linie unter Fussnote
+   %footnosepline,   % keine Linie unter Fussnote
+%%%% --- Kapitel ---
+   %chapterprefix,   % Ausgabe von 'Kapitel:'
+   nochapterprefix,  % keine Ausgabe von 'Kapitel:'
+%%%% === Verzeichnisse (TOC, LOF, LOT, BIB) ===
+   %liststotoc,      % Tabellen & Abbildungsverzeichnis ins TOC
+   %idxtotoc,        % Index ins TOC
+   %bibtotoc,         % Bibliographie ins TOC
+   %bibtotocnumbered, % Bibliographie im TOC nummeriert
+   %liststotocnumbered, % Alle Verzeichnisse im TOC nummeriert
+   %tocindent,        % eingereuckte Gliederung
+   %tocleft,         % Tabellenartige TOC
+   %listsindent,      % eingereuckte LOT, LOF
+   %listsleft,       % Tabellenartige LOT, LOF
+   %pointednumbers,  % Überschriftnummerierung mit Punkt, siehe DUDEN !
+   %pointlessnumbers, % Überschriftnummerierung ohne Punkt, siehe DUDEN !
+   %openbib,         % alternative Formatierung des Literaturverzeichnisses
+%%%% === Matheformeln ===
+   %leqno,           % Formelnummern links
+   %fleqn,            % Formeln werden linksbuendig angezeigt
+]{scrartcl}%     Klassen: scrartcl, scrreprt, scrbook
+% -------------------------------------------------------------------------
+
+%%% Preambel
+\input{preamble}
+%%% Bibliographie-Datenbank
+\bibliography{test_bib.bib}
+
+%% Dokument Beginn %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	% --- Deckblatt
+	\input{title/verbose-title}
+	
+	% --- Inhaltsverzeichnis
+	\newgeometry{margin=25mm}
+	\tableofcontents
+	\clearpage
+	
+	% --- Hauptteil
+	% 1.5 Zeilenabstand für den Hauptteil einschalten
+	\onehalfspacing
+	% Korrekturrand
+	\newgeometry{margin=25mm,right=50mm}
+	% Hauptdatei mit Gliederung und allen Inhalten
+	\input{index}
+	%normale Seitenränder wiederherstellen
+	\restoregeometry
+	% 1.5 Zeilenabstand nach dem Hauptteil ausschalten
+	\singlespacing
+	\clearpage
+	
+	% --- Literatur- und andere Verzeichnisse
+	\section*{Bibliografie}
+	% Bei Quellen ein Keyword einfügen!
+	% alle Dinge die als Keyword 'quell' haben werden hier gedruckt
+	\printbibliography[heading=quell,keyword=quell]
+	% alle restlichen Dinge landen hier
+	\printbibliography[heading=lit,nottype=online,notkeyword=quell,notkeyword=hilfsm]
+	% alle Dinge vom Type Onlinequelle (@online) landen hier
+	\printbibliography[heading=online,type=online]
+	% alle Dinge die als Keyword 'hilfsm' haben werden hier gedruckt
+	\printbibliography[heading=hilfsm,keyword=hilfsm]
+	
+	\clearpage
+	\listoftodos
+%	\listoffigures
+%	\listoftables
+	
+	% --- Anhang
+	%\appendix
+	
+	%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

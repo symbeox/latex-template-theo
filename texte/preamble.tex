@@ -1,0 +1,165 @@
+%
+% Pakete
+% ========================================
+%
+%% Schrift festlegen =====================
+% Dokumente müssen in UTF-8 Kodierung gespeichert sein
+\usepackage[utf8x]{inputenc}
+
+% Setting für Multilang Dokumente mit Deutsch als Hauptsprache
+\usepackage[main=ngerman,bidi=default]{babel}
+\babelprovide[import=he]{hebrew}
+\babelprovide[import=el]{polutonikogreek}
+\babelfont[hebrew]{rm}[Contextuals=Alternate]{SBL Hebrew}
+\babelfont[polutonikogreek]{rm}[Contextuals=Alternate]{SBL Greek}
+
+% Anführungszeichen steuern: 
+% \enquote{text}
+% \textquote[〈cite〉][〈punct〉]{〈text〉}〈tpunct〉
+\usepackage[babel,german=quotes]{csquotes}
+
+% Verbesserter Textsatz
+\usepackage{microtype}
+
+% Grafiken verwenden
+\usepackage{graphicx}
+% float Umgebungen ausrichten
+\usepackage{float}
+% zum Ausrichten einer Box
+\usepackage{adjustbox}
+
+% schöne Tabellen erstellen
+\usepackage{longtable}
+% Tabellen zeilen oder Spalten zusammenschließen
+\usepackage{multirow}
+\usepackage{multicol}
+% 3x sub title
+\usepackage{caption3}
+%Zeilennummern einfügen
+% \linenumbers -> nummeriert jede Zeile; \modulolinenumbers[5] nummerriert im Intervall
+\usepackage{lineno}
+
+% ToDos mit \todo{} einfügen
+% ToDo-Notes erscheinen solange der Status des Dokuments nicht final ist
+\usepackage[ngerman,colorinlistoftodos,textsize=footnotesize,obeyFinal]{todonotes}
+
+% Zeilenabstand steuern
+%\usepackage[onehalfspacing]{setspace}
+\usepackage{setspace}
+
+% \titleref{<label-name>} gibt die Überschrift des Punktes aus
+\usepackage{titleref}
+% zusätzliche Optionen für Listen
+\usepackage{enumitem}
+
+%% Bibliographie Einstellungen ===========================
+% zitieren mit \footcite[prenote][postnote]{bib-id}
+% ein f. oder ff. nach der Seitennummer erreicht man mit \psq bzw. \psqq
+\usepackage[style="../bib-style/MarTheol" %eigener Zitierstil der eigenlich zu verbose-trad3 identisch ist, aber eine Verbesserung enthält. aaO und ebd wird nicht als erstes auf neuen Seiten gesetzt, sonder stattdessen der Kurztitel
+,isbn=false
+,pagetracker=page
+% gleicher Autorenname wird auch dann gesetzt, wenn er mehrfach nacheinander vor kommt
+,dashed=false
+%,url=false
+]{biblatex}
+% unnötige BibLatex-Einträge entfernen, dass sie nicht mit im Literaturverzeichnis auftauchen
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+	\clearfield{date}
+	\clearfield{eprint}
+	\clearfield{isbn}
+	\clearfield{issn}
+	\clearfield{month}
+	\clearlist{publisher}
+}
+
+% Überschriften für die einzelnen Abschnitte im Literaturverzeichnis
+\defbibheading{quell}{\subsection*{Primärliteratur}}
+\defbibheading{lit}{\subsection*{Sekundärliteratur}}
+\defbibheading{online}{\subsection*{Internetquellen}}
+\defbibheading{hilfsm}{\subsection*{Hilfsmittel}}
+
+% erst Nachname, dann Vorname
+\DeclareNameAlias{default}{family-given}
+\DeclareNameAlias{sortname}{family-given}
+% Trenner zwischen den Namen ein Slash
+\renewcommand*{\multinamedelim}{\addslash}
+\renewcommand*{\finalnamedelim}{\addslash}
+\renewcommand*{\multilistdelim}{\addslash}
+\renewcommand*{\finallistdelim}{\addslash}
+% Doppelpunkt nach Autorenname
+\renewcommand*{\labelnamepunct}{\addcolon\space}
+% Trennzeichen zwischen einzelen Elementen (z.B. Titel, Band, Verlag)
+\renewcommand*{\newunitpunct}{\addcomma\space}
+% Im Zitat wird nun der Verlag nicht mehr angezeigt, sondern nur Ort Jahr
+\renewbibmacro*{publisher+location+date}{%
+	\printlist{location}
+	\usebibmacro{date}
+	\newunit}
+
+% vollen Autorennamen nennen
+\DeclareCiteCommand{\citeauthorfirstlast}
+{\boolfalse{citetracker}%
+	\boolfalse{pagetracker}%
+	\DeclareNameAlias{labelname}{first-last}%
+	\usebibmacro{prenote}}
+{\ifciteindex
+	{\indexnames{labelname}}
+	{}%
+	\printnames{labelname}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+
+%% als letzte Pakete laden!
+%\usepackage[pdfpagelabels=true,german,backref,pagebackref]{hyperref}
+%\usepackage[pdfpagelabels=true,german,pagebackref]{hyperref}
+%\hypersetup{
+%  pdftitle    		= {\pdfTitle}
+%  ,pdfsubject  		= {\pdfSubject}
+%  ,pdfauthor   		= {\pdfAutor}
+%  ,pdfkeywords 		= {\pdfKeywords}
+%	,bookmarksopen 	= {true}
+%	,colorlinks			=	true
+%	,breaklinks			=	true
+%	,linkcolor			=	black
+%	,urlcolor				=	blue
+%	%,pagecolor				=	black
+%	,urlcolor				=	blue
+%	,citecolor			=	blue
+%	,bookmarksopen	=	true
+%	%,bookmarksopenlevel=0
+%	,bookmarksnumbered=true
+%	,plainpages			=	false
+%	%,pdftoolbar			=	true
+%	%,pdfstartview		=% leer lassen, damit der Reader seine Standardeinstellung verwendet
+%	%,pdfpagemode		=	FullScreen
+%	%,pdffitwindow		=	true
+%	,pdfborder			=	{0 0 0}
+%}
+
+%\usepackage[a4paper
+%	,left=22mm
+%	,right=50mm
+%	,top=22mm
+%	,bottom=27mm
+%%	,marginparsep=2pt
+%	]{geometry}
+\usepackage[a4paper,margin=25mm]{geometry}
+	
+% Ende
+% ========================================
+%%
+% Einstellungen
+% ========================================
+% Randbreite für ToDo Notes festlegen
+\setlength{\marginparwidth}{36mm}
+
+
+% mit \blankpage kann nun eine leere Seite eingefügt werden
+\def\blankpage{%
+	\clearpage%
+	\thispagestyle{empty}%
+	% dieser Befehl steuert, ob die Seitenzahl weiterläuft (ja, wenn auskommentiert)
+%	\addtocounter{page}{-1}%
+	\null%
+	\clearpage}

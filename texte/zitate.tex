@@ -1,0 +1,18 @@
+\section{Zitation}
+\subsection{csquotes für An- und Ausführungszeichen}
+Um Zitate in An- und Ausführungszeichen zu hüllen verwendet diese Vorlage den \textbackslash enquote\{\}-Befehl. Das hat den Vorteil, dass sich die An- und Ausführungszeichen per Einstellung verschiedenen Sprachen anpassen und auch verschachtelte Zitate mit doppelten und einfachen An- und Ausführungszeichen automatisch richtig dargestellt werden.
+
+Beispiel: \enquote{Hier ist ein lange Abschnitt der zitiert wird. Dieser Abschnitt enthält ebenfalls ein \enquote{Zitat aus einem zweiten Werk} wofür einfache An- und Ausführungszeichen benötigt werden.}
+
+\subsection{shorttitle}
+Das Attribut \textit{shorttitle} ist für den gewählten Zitierstil sehr wichtig. Beim ersten Vorkommen eines Werks wird dieses in der Fußnote vollständig zitiert, aber bei jedem weiteren mit einer Kurzform. Dafür muss ein Kurztitel angegeben werden, der meist aus einem oder zwei aussagekräftigen Worten aus dem eigentlichen Titel des Werks besteht.
+
+\subsection{Zitate einfügen}
+\enquote{Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.}\footcite[104]{Gnilka.1978} At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\footcite[Vgl.][104]{Gnilka.1978}
+
+\enquote{Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.}\footcite[207]{Gnilka.1978}
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.\footcites[Vgl.][]{Ego.2007}[Vgl.][289]{Gnilka.1978}
+
+\subsection{Bibliografie}
+Die Bibliogafie lässt sich insgesamt in vier Teile untergliedern: Primär-, Sekundärliteratur, Internetquellen und Hilfsmittel. Die Onlinequellen werden über ihren Typ @online herausgefiltert. Primärliteratur muss als einziges keyword \enquote*{quell} haben und Hilfsmittel das keyword \enquote*{hilfsm}. Die restliche Literatur wird als Sekundärliteratur eingeordnet.
