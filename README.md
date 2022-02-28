@@ -1,8 +1,7 @@
-# latex-template-theo
-Eine LaTeX Vorlage für Seminararbeiten in der Theologie.
+# LaTeX Vorlage für Theologie
+Eine LaTeX Vorlage für wissenschafltiche Hausarbeiten/Seminararbeiten der Theologie.
 
-Require
-- SBL Fonts
-- xelatex or lualatex
-- biber for biblatex
-- 
+Voraussetzungen für die Nutzung:
+- BibLatex mit Biber als Backend
+- xelatex oder lualatex als Kompiler, damit Hebräisch verwendet werden kann
+- SBL Schriftarten für Griechisch und Hebräisch (Download: https://www.sbl-site.org/educational/biblicalfonts.aspx)
